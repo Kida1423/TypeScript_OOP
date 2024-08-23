@@ -40,44 +40,33 @@ var Elevator = /** @class */ (function () {
         return floor >= this.minFloor && floor <= this.maxFloor;
     };
     Elevator.prototype.simulateStuck = function () {
-        if (Math.random() < 1 / 3) { 
+        if (Math.random() < 1 / 3) {
             console.log("\u041B\u0438\u0444\u0442 \u0437\u0430\u0441\u0442\u0440\u044F\u043B \u043D\u0430 \u044D\u0442\u0430\u0436\u0435 ".concat(this.currentFloor));
         }
     };
     return Elevator;
 }());
-var floorInput = prompt('Enter floor number: ');
-var weightInput = prompt('Enter weight: ');
-var floor = parseInt(floorInput || '0', 10);
-var weight = parseInt(weightInput || '0', 10);
-if (!isNaN(floor) && !isNaN(weight)) {
-    var elev = new Elevator(1);
-    elev.move(floor, weight);
-}
-else {
-    console.log("Invalid input. Please enter numeric values.");
-}
 function startElevator() {
     var elev = new Elevator(1);
     while (true) {
-        var floorInput_1 = prompt('Введите номер этажа (или "exit" для выхода): ');
-        if (floorInput_1 === null || floorInput_1.toLowerCase() === "exit") {
+        var floorInput = prompt('Введите номер этажа (или "exit" для выхода): ');
+        if (floorInput === null || floorInput.toLowerCase() === "exit") {
             console.log("Завершение работы.");
             break;
         }
-        var weightInput_1 = prompt('Введите вес (или "exit" для выхода): ');
-        if (weightInput_1 === null || weightInput_1.toLowerCase() === "exit") {
+        var weightInput = prompt('Введите вес (или "exit" для выхода): ');
+        if (weightInput === null || weightInput.toLowerCase() === "exit") {
             console.log("Завершение работы.");
             break;
         }
-        var floor_1 = parseInt(floorInput_1, 10);
-        var weight_1 = parseInt(weightInput_1, 10);
-        if (!isNaN(floor_1) && !isNaN(weight_1)) {
-            elev.move(floor_1, weight_1);
+        var floor = parseInt(floorInput, 10);
+        var weight = parseInt(weightInput, 10);
+        if (!isNaN(floor) && !isNaN(weight)) {
+            elev.move(floor, weight);
         }
         else {
             console.log("Неверный ввод. Пожалуйста, введите числовые значения.");
         }
     }
-    startElevator();
 }
+startElevator();

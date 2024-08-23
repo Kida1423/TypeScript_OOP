@@ -51,18 +51,6 @@ class Elevator {
     }
 }
 
-const floorInput = prompt('Enter floor number: ');
-const weightInput = prompt('Enter weight: ');
-
-const floor = parseInt(floorInput || '0', 10);
-const weight = parseInt(weightInput || '0', 10);
-
-if (!isNaN(floor) && !isNaN(weight)) {
-    let elev: Elevator = new Elevator(1);
-    elev.move(floor, weight);
-} else {
-    console.log("Invalid input. Please enter numeric values.");
-}
 
 function startElevator(){
     let elev = new Elevator(1);
