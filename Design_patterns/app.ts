@@ -18,7 +18,7 @@ class FeedStrategy implements BehaviorStrategy {
             }
         }
     }
-    
+
     private getStep(age: number): number {
         if (age <= 5) return 10;
         if (age <= 10) return 5;
@@ -94,7 +94,6 @@ class Animal {
         this.behaviorStrategy.applyBehavior(this);
         this.checkHealth();
     }
-
     private checkHealth(): void {
         if (this.health <= 0) {
             this.die();
@@ -122,7 +121,7 @@ function displayPets(): void {
 
     pets.forEach((pet, index) => {
         petList.innerHTML += `<div>${index + 1}. ${pet.name}, Age: ${pet.age}, Satiety: ${pet.satiety}, Mood: ${pet.mood}, Health: ${pet.health}</div>`;
-    });
+    })
 
     const animalSelect = document.getElementById("animalSelect") as HTMLSelectElement;
     animalSelect.innerHTML = '';
@@ -138,7 +137,6 @@ function displayPets(): void {
 function addPet(): void {
     const petNameInput = document.getElementById('petName') as HTMLInputElement;
     const petAgeInput = document.getElementById('petAge') as HTMLInputElement;
-
     const petName: string = petNameInput.value.trim();
     const petAge: number = parseInt(petAgeInput.value, 10);
 
@@ -146,7 +144,7 @@ function addPet(): void {
         alert("Please enter valid name and age.");
         return;
     }
-
+    
     const defaultStrategy = new FeedStrategy();
     const newPet = new Animal(petName, petAge, defaultStrategy);
     pets.push(newPet);
@@ -166,42 +164,33 @@ document.getElementById('submitPetBtn')?.addEventListener('click', addPet);
 document.getElementById('feedAnimalBtn')?.addEventListener('click', () => {
     const animalSelect = document.getElementById('animalSelect') as HTMLSelectElement;
     const selectedAnimalName = animalSelect.value;
-
     const selectedAnimal = pets.filter(pet => pet.name === selectedAnimalName)[0];
-    
     if (selectedAnimal) {
         selectedAnimal.behaviorStrategy = new FeedStrategy();
         selectedAnimal.applyBehavior();
     }
-
     displayPets();
 });
 
 document.getElementById('playAnimalBtn')?.addEventListener('click', () => {
     const animalSelect = document.getElementById('animalSelect') as HTMLSelectElement;
     const selectedAnimalName = animalSelect.value;
-
     const selectedAnimal = pets.filter(pet => pet.name === selectedAnimalName)[0];
-
     if (selectedAnimal) {
         selectedAnimal.behaviorStrategy = new PlayStrategy();
         selectedAnimal.applyBehavior();
     }
-
     displayPets();
 });
 
 document.getElementById('healAnimalBtn')?.addEventListener('click', () => {
     const animalSelect = document.getElementById('animalSelect') as HTMLSelectElement;
     const selectedAnimalName = animalSelect.value;
-
     const selectedAnimal = pets.filter(pet => pet.name === selectedAnimalName)[0];
-
     if (selectedAnimal) {
         selectedAnimal.behaviorStrategy = new HealStrategy();
         selectedAnimal.applyBehavior();
     }
-
     displayPets();
 });
 
